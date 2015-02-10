@@ -4,8 +4,8 @@ $(document).ready(function() {
     type: 'GET',
     url: '/data/' + username + '',
     success: function(msg) {
-      $('#deletethis').remove()
-      $('.container').append(msg)
+      $('.container').remove()
+      $('body').append(msg)
     },
   });
 });
