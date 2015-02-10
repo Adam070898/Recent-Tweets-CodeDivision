@@ -41,10 +41,10 @@ require APP_ROOT.join('config', 'database')
 # Twitter API Configuration
 require 'twitter'
 $client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "JoPzsiwTYxR8hvejO4K219HB1"
-  config.consumer_secret     = "OqTZTjWr9OyT94LnoBGzOdzcqCgUNohhdA2Ti92HeIc47tPpoV"
-  config.access_token        = "3015997298-VZlgi15ltOzd6PmorRBfItItF44j9xPE5a61Blw"
-  config.access_token_secret = "7yl7B6on7IXuMjue4z9voRe9BeySBODEJXsGV4DZM9Cl6"
+  config.consumer_key        = WHOOPS
+  config.consumer_secret     = UH OH
+  config.access_token        = WOAH THERE
+  config.access_token_secret = NOPE
 end
 
 # Hope this works
