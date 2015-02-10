@@ -1,17 +1,21 @@
 class TwitterUser < ActiveRecord::Base
   has_many :tweets
-
-  def collect_with_max_id(collection=[], max_id=nil, &block)
-    response = yield(max_id)
-    collection += response
-    response.empty? ? collection.flatten : collect_with_max_id(collection, response.last.id - 1, &block)
+  def fetch_tweets!
+    $client.user_timeline(self.username, count: 10).each do |tweet|
+      self.tweets.create(text: tweet.text)
+    end
   end
 
-  def get_ten_tweets(user)
-    collect_with_max_id do |max_id|
-      options = {count: 10, include_rts: true}
-      options[:max_id] = max_id unless max_id.nil?
-      user_timeline(user, options)
+  def stale_tweets?
+    return self.tweets.last.updated_at < (Time.now - 900)
+  end
+
+  def update_tweets!
+    newtweets = $client.user_timeline(self.username, count: 10)
+    counter = 0
+    self.tweets.each do |tweet|
+      tweet.text = newtweets[counter].text
+      counter += 1
     end
   end
 end

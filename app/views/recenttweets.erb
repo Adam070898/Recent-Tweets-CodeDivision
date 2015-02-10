@@ -1,6 +1,4 @@
-<div class="container">
-  <h1>Tweets from <%= params[:username] %></h1>
-  <% @tweets.each do |tweet| %>
-    <p><%= @counter += 1%> <%= tweet.text %></p>
-  <% end %>
-</div>
+<h1>Tweets from <%= params[:username] %></h1>
+<% @tweets.each do |tweet| %>
+  <p><%= @counter += 1%> <%= tweet.text %></p>
+<% end %>
